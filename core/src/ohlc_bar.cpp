@@ -15,6 +15,18 @@ OHLCBar::OHLCBar(TimePoint start_time,
       close_(close),
       volume_(volume) {}
 
+
+void OHLCBar::Print(std::ostream& os) const {
+    // Convert start_time_ to time_t for formatting
+    std::time_t start_time_t = std::chrono::system_clock::to_time_t(start_time_);
+    os << "Bar(StartTime=" << std::put_time(std::localtime(&start_time_t), "%F %T") 
+       << ", Open=" << open_ 
+       << ", High=" << high_ 
+       << ", Low=" << low_ 
+       << ", Close=" << close_ 
+       << ", Volume=" << volume_ << ")";
+}
+
 Bar::TimePoint OHLCBar::StartTime() const { return start_time_; }
 double OHLCBar::Open() const { return open_; }
 double OHLCBar::High() const { return high_; }

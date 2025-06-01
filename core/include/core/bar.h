@@ -11,6 +11,8 @@ class Bar {
 
   virtual ~Bar() = default;
 
+  virtual void Print(std::ostream& os) const = 0;
+
   virtual TimePoint StartTime() const = 0;
   virtual double Open() const = 0;
   virtual double High() const = 0;
@@ -18,6 +20,11 @@ class Bar {
   virtual double Close() const = 0;
   virtual double Volume() const = 0;
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Bar& bar) {
+  bar.Print(os);
+  return os;
+}
 
 }  // namespace core
 

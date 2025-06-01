@@ -15,6 +15,8 @@ class OHLCBar : public Bar {
           double close,
           double volume);
 
+  void Print(std::ostream& os) const override;
+
   TimePoint StartTime() const override;
   double Open() const override;
   double High() const override;
