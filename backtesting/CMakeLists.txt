@@ -8,5 +8,5 @@ file(GLOB_RECURSE HEADERS src/*.h)
 
 add_executable(BacktestEngine ${SOURCES})
 
-target_include_directories(BacktestEngine PUBLIC include)
+target_include_directories(BacktestEngine PUBLIC include ${PROJECT_SOURCE_DIR}/external/dotenv-cpp/include)
 target_link_libraries(BacktestEngine PRIVATE core cpr::cpr)

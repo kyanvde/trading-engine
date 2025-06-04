@@ -1,5 +1,7 @@
 #include <iostream>
 #include <core/ohlc_bar.h>
+#include <laserpants/dotenv/dotenv.h>
+#include <cpr/cpr.h>
 
 int main() {
     std::cout << "Hello world!" << std::endl;
@@ -8,6 +10,23 @@ int main() {
 
     std::cout << bar << std::endl;
     
+    dotenv::init();
+
+    cpr::Response r = cpr::Get(
+        cpr::Url{"https://paper-api.alpaca.markets/v2/assets?attributes="},
+        cpr::Header{
+            {"APCA-API-KEY-ID", "PK1SXVQHAF428SJG70T3"},
+            {"APCA-API-SECRET-KEY", "Jt4ZMK2mogqs49jmKFy2mL7J4iQhEJDzFz3QdMSO"},
+            {"accept", "application/json"}
+        }
+    );
+
+    if (r.status_code == 200) {
+        std::cout << "Success:\n" << r.text << std::endl;
+    } else {
+        std::cerr << "Request failed: HTTP " << r.status_code << "\n"
+                  << "Error: " << r.error.message << std::endl;
+    }
 
     return EXIT_SUCCESS;
 }
