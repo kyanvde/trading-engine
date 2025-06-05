@@ -2,6 +2,7 @@
 #define API_PROVIDER_ALPACA_DATA_PROVIDER_H_
 
 #include "api/service/alpaca/alpaca_asset_service.h"
+#include "api/service/alpaca/alpaca_market_history_service.h"
 
 namespace api {
 class AlpacaDataProvider final : public DataProvider {
@@ -13,6 +14,10 @@ class AlpacaDataProvider final : public DataProvider {
 
   std::unique_ptr<AssetService> CreateAssetService() override {
     return std::make_unique<AlpacaAssetService>(client_);
+  }
+
+  std::unique_ptr<MarketHistoryService> CreateMarketHistoryService() override {
+    return std::make_unique<AlpacaMarketHistoryService>(client_);
   }
 };
 

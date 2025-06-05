@@ -2,6 +2,7 @@
 #define API_PROVIDER_DATA_PROVIDER_H_
 
 #include "api/service/asset_service.h"
+#include "api/service/market_history_service.h"
 
 namespace api {
 
@@ -10,6 +11,9 @@ class DataProvider {
   virtual ~DataProvider() = default;
 
   virtual std::unique_ptr<AssetService> CreateAssetService() = 0;
+
+  virtual std::unique_ptr<MarketHistoryService>
+  CreateMarketHistoryService() = 0;
 };
 
 }  // namespace api

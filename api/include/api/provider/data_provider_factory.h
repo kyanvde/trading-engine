@@ -7,9 +7,9 @@
 
 namespace api {
 class DataProviderFactory {
-public:
+ public:
   static std::unique_ptr<DataProvider> Create(const std::string& provider_name);
 };
-}
+}  // namespace api
 
 #endif  // API_PROVIDER_DATA_PROVIDER_FACTORY_H_

@@ -6,6 +6,7 @@
 
 #include "api/provider/data_provider.h"
 #include "api/provider/data_provider_factory.h"
+#include "api/service/market_history_service.h"
 
 int main() {
   std::cout << "Hello world!" << std::endl;
@@ -24,6 +25,11 @@ int main() {
   const std::vector<core::Asset> assets = asset_service->getTradableAssets();
 
   std::cout << assets.size() << std::endl;
+
+  const std::unique_ptr<api::MarketHistoryService> market_history_service =
+      data_provider->CreateMarketHistoryService();
+
+  const std::vector<core::Bar> bars = market_history_service->getDailyBars("AAPL", 15);
 
   return EXIT_SUCCESS;
 }

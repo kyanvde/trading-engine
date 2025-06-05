@@ -12,6 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_subdirectory(external/cpr)
 add_subdirectory(external/json)
+add_subdirectory(external/date)
 
 add_subdirectory(core)
 add_subdirectory(api)
