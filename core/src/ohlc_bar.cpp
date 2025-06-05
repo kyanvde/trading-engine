@@ -2,12 +2,8 @@
 
 namespace core {
 
-OHLCBar::OHLCBar(TimePoint start_time,
-                 double open,
-                 double high,
-                 double low,
-                 double close,
-                 double volume)
+OHLCBar::OHLCBar(TimePoint start_time, double open, double high, double low,
+                 double close, double volume)
     : start_time_(start_time),
       open_(open),
       high_(high),
@@ -15,16 +11,13 @@ OHLCBar::OHLCBar(TimePoint start_time,
       close_(close),
       volume_(volume) {}
 
-
 void OHLCBar::Print(std::ostream& os) const {
-    // Convert start_time_ to time_t for formatting
-    std::time_t start_time_t = std::chrono::system_clock::to_time_t(start_time_);
-    os << "Bar(StartTime=" << std::put_time(std::localtime(&start_time_t), "%F %T") 
-       << ", Open=" << open_ 
-       << ", High=" << high_ 
-       << ", Low=" << low_ 
-       << ", Close=" << close_ 
-       << ", Volume=" << volume_ << ")";
+  // Convert start_time_ to time_t for formatting
+  std::time_t start_time_t = std::chrono::system_clock::to_time_t(start_time_);
+  os << "Bar(StartTime="
+     << std::put_time(std::localtime(&start_time_t), "%F %T")
+     << ", Open=" << open_ << ", High=" << high_ << ", Low=" << low_
+     << ", Close=" << close_ << ", Volume=" << volume_ << ")";
 }
 
 Bar::TimePoint OHLCBar::StartTime() const { return start_time_; }

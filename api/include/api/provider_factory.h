@@ -5,9 +5,7 @@
 
 namespace api {
 
-    class ProviderFactory {
-
-    }
-}
+class ProviderFactory {}
+}  // namespace api
 
 #endif  // API_PROVIDER_FACTORY_H_

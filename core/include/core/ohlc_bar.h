@@ -2,18 +2,15 @@
 #define CORE_OHLC_BAR_H_
 
 #include <chrono>
+
 #include "core/bar.h"
 
 namespace core {
 
 class OHLCBar : public Bar {
-    public:
-  OHLCBar(TimePoint start_time,
-          double open,
-          double high,
-          double low,
-          double close,
-          double volume);
+ public:
+  OHLCBar(TimePoint start_time, double open, double high, double low,
+          double close, double volume);
 
   void Print(std::ostream& os) const override;
 
