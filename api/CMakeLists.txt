@@ -2,6 +2,6 @@
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS src/*.h)
 
-add_library(core STATIC ${SOURCES})
+add_library(api STATIC ${SOURCES})
 
-target_include_directories(core PUBLIC include)
+target_include_directories(api PUBLIC include)
