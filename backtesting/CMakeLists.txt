@@ -9,4 +9,4 @@ file(GLOB_RECURSE HEADERS src/*.h)
 add_executable(BacktestEngine ${SOURCES})
 
 target_include_directories(BacktestEngine PUBLIC include)
-target_link_libraries(BacktestEngine PRIVATE core api)
+target_link_libraries(BacktestEngine PUBLIC core api)

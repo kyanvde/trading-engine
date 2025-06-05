@@ -21,7 +21,9 @@ int main() {
   const std::unique_ptr<api::AssetService> asset_service =
       data_provider->CreateAssetService();
 
-  std::vector<core::Asset> assets = asset_service->getTradableAssets();
+  const std::vector<core::Asset> assets = asset_service->getTradableAssets();
+
+  std::cout << assets.size() << std::endl;
 
   return EXIT_SUCCESS;
 }

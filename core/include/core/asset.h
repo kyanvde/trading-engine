@@ -9,10 +9,19 @@ namespace core {
 class Asset {
   std::string symbol_;
   std::string name_;
+  std::string exchange_;
+  std::string asset_class_;
   bool tradable_;
+  bool marginable_;
+  bool shortable_;
+  bool easy_to_borrow_;
+  bool fractionable_;
 
  public:
-  Asset(const std::string& symbol, const std::string& name, bool tradable);
+  Asset(const std::string& symbol, const std::string& name,
+        const std::string& exchange, const std::string& asset_class,
+        bool tradable, bool marginable, bool shortable, bool easy_to_borrow,
+        bool fractionable);
 
   void Print(std::ostream& os) const;
 
@@ -28,4 +37,4 @@ inline std::ostream& operator<<(std::ostream& os, const Asset& asset) {
 
 }  // namespace core
 
-#endif // CORE_ASSET_H_
+#endif  // CORE_ASSET_H_
