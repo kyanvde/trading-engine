@@ -26,4 +26,12 @@ std::string TimeUtil::FormatRfc3339Utc(
   return date::format("%FT%TZ", date::floor<std::chrono::seconds>(time_point));
 }
 
+std::chrono::system_clock::time_point TimeUtil::ParseRfc3339Utc(
+    const std::string& rfc3339_string) {
+  std::istringstream infile{rfc3339_string};
+  std::chrono::system_clock::time_point tp;  infile >> parse("%FT%T%Ez", tp);
+
+  return tp;
+}
+
 }  // namespace core

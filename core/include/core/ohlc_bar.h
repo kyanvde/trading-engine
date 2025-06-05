@@ -7,7 +7,7 @@
 
 namespace core {
 
-class OHLCBar : public Bar {
+class OHLCBar final : public Bar {
  public:
   OHLCBar(TimePoint start_time, double open, double high, double low,
           double close, double volume);

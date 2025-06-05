@@ -4,13 +4,14 @@
 
 #include <iostream>
 
+#include "api/parser/alpaca/alpaca_bar_parser.h"
 #include "core/time_util.h"
 
 api::AlpacaMarketHistoryService::AlpacaMarketHistoryService(
     AlpacaClient& client)
     : client_(client) {}
 
-std::vector<core::Bar> api::AlpacaMarketHistoryService::getDailyBars(
+std::vector<core::OHLCBar> api::AlpacaMarketHistoryService::getDailyBars(
     const std::string& symbol, const int amount) {
   cpr::Parameters parameters;
   parameters.Add(cpr::Parameter("symbols", symbol));
@@ -28,7 +29,5 @@ std::vector<core::Bar> api::AlpacaMarketHistoryService::getDailyBars(
 
   const cpr::Response response = client_.GetMarketData("/v2/stocks/bars", parameters);
 
-  std::cout << response.text.size() << std::endl;
-
-  return {};
+  return AlpacaBarParser::parse(nlohmann::json::parse(response.text));
 }

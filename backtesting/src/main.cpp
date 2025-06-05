@@ -9,13 +9,6 @@
 #include "api/service/market_history_service.h"
 
 int main() {
-  std::cout << "Hello world!" << std::endl;
-
-  const core::OHLCBar bar(std::chrono::system_clock::now(), 100.5, 105.0, 99.9,
-                          104.2, 1500);
-
-  std::cout << bar << std::endl;
-
   const std::unique_ptr<api::DataProvider> data_provider =
       api::DataProviderFactory::Create("alpaca");
 
@@ -24,12 +17,13 @@ int main() {
 
   const std::vector<core::Asset> assets = asset_service->getTradableAssets();
 
-  std::cout << assets.size() << std::endl;
-
   const std::unique_ptr<api::MarketHistoryService> market_history_service =
       data_provider->CreateMarketHistoryService();
 
-  const std::vector<core::Bar> bars = market_history_service->getDailyBars("AAPL", 15);
+  const std::vector<core::OHLCBar> bars = market_history_service->getDailyBars("AAPL", 15);
+  for (const core::OHLCBar& bar : bars) {
+    std::cout << bar << std::endl;
+  }
 
   return EXIT_SUCCESS;
 }

@@ -24,6 +24,8 @@ class TimeUtil {
   static std::string FormatRfc3339Utc(
       const std::chrono::system_clock::time_point& time_point);
 
+  static std::chrono::system_clock::time_point ParseRfc3339Utc(const std::string& rfc3339_string);
+
   TimeUtil() = delete;
 };
 

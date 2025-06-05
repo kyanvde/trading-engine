@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "core/bar.h"
+#include "core/ohlc_bar.h"
 
 namespace api {
 
@@ -11,7 +12,7 @@ class MarketHistoryService {
  public:
   virtual ~MarketHistoryService() = default;
 
-  virtual std::vector<core::Bar> getDailyBars(const std::string& symbol,
+  virtual std::vector<core::OHLCBar> getDailyBars(const std::string& symbol,
                                               int amount) = 0;
 };
 }  // namespace api

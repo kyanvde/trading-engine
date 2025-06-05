@@ -2,8 +2,10 @@
 
 namespace core {
 
-OHLCBar::OHLCBar(TimePoint start_time, double open, double high, double low,
-                 double close, double volume)
+OHLCBar::OHLCBar(const TimePoint start_time, const double open,
+                 const double high, const double low, const double close,
+                 const double volume)
+
     : start_time_(start_time),
       open_(open),
       high_(high),

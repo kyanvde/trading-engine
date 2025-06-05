@@ -2,6 +2,7 @@
 #define API_SERVICE_ALPACA_ALPACA_MARKET_HISTORY_SERVICE_H_
 #include "api/client/alpaca_client.h"
 #include "api/service/market_history_service.h"
+#include "core/ohlc_bar.h"
 
 namespace api {
 class AlpacaMarketHistoryService final : public MarketHistoryService {
@@ -10,7 +11,7 @@ class AlpacaMarketHistoryService final : public MarketHistoryService {
  public:
   explicit AlpacaMarketHistoryService(AlpacaClient& client);
 
-  std::vector<core::Bar> getDailyBars(const std::string& symbol,
+  std::vector<core::OHLCBar> getDailyBars(const std::string& symbol,
                                       int amount) override;
 };
 }  // namespace api
