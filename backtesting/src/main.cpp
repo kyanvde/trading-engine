@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+#include "api/provider/data_provider.h"
+#include "api/provider/data_provider_factory.h"
+
 int main() {
   std::cout << "Hello world!" << std::endl;
 
@@ -12,21 +15,13 @@ int main() {
 
   std::cout << bar << std::endl;
 
-  dotenv::init();
+  const std::unique_ptr<api::DataProvider> data_provider =
+      api::DataProviderFactory::Create("alpaca");
 
-  cpr::Response r = cpr::Get(
-      cpr::Url{"https://paper-api.alpaca.markets/v2/assets?attributes="},
-      cpr::Header{
-          {"APCA-API-KEY-ID", "PK1SXVQHAF428SJG70T3"},
-          {"APCA-API-SECRET-KEY", "Jt4ZMK2mogqs49jmKFy2mL7J4iQhEJDzFz3QdMSO"},
-          {"accept", "application/json"}});
+  const std::unique_ptr<api::AssetService> asset_service =
+      data_provider->CreateAssetService();
 
-  if (r.status_code == 200) {
-    std::cout << "Success:\n" << r.text << std::endl;
-  } else {
-    std::cerr << "Request failed: HTTP " << r.status_code << "\n"
-              << "Error: " << r.error.message << std::endl;
-  }
+  std::vector<core::Asset> assets = asset_service->getTradableAssets();
 
   return EXIT_SUCCESS;
 }

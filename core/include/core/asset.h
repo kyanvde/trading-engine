@@ -27,3 +27,5 @@ inline std::ostream& operator<<(std::ostream& os, const Asset& asset) {
 }
 
 }  // namespace core
+
+#endif // CORE_ASSET_H_

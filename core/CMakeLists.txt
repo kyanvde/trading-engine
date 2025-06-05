@@ -1,6 +1,5 @@
 # Source files
 file(GLOB_RECURSE SOURCES src/*.cpp)
-file(GLOB_RECURSE HEADERS src/*.h)
 
 add_library(core STATIC ${SOURCES})
 
